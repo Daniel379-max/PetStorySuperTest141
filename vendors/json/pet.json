@@ -1,11 +1,11 @@
 {
-    "id": 473357,
-    "categoty": {
+    "id": 47335732444,
+    "category": {
         "id": 1,
         "name": "dog"
     },
-    "name": "doguinho",
-    "photoUrl": [],
+    "name": "doguinho 2",
+    "photoUrls": [],
     "tags": [{
         "id": 1,
         "name": "vacinned"
