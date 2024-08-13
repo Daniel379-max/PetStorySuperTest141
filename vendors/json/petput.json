@@ -1,0 +1,17 @@
+{
+    "id": 47335732444,
+    "category": {
+        "id": 1,
+        "name": "dog"
+    },
+    "name": "doguinho 2",
+    "photoUrls": [
+    ],
+    "tags": [
+        {
+            "id": 1,
+            "name": "vacinned"
+        }
+    ],
+    "status": "sold"
+}
