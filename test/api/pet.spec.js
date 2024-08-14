@@ -5,6 +5,7 @@ const petId = 47335732444
 describe('API PetStore Swagger - Entidade Pet', () => {
 
     const request = supertest('https://petstore.swagger.io/v2')
+    const massaInicial = require('../../vendors/json/massaPet')
 
     it('POST Pet', () => {
         const pet = require('../../vendors/json/pet.json')
@@ -19,6 +20,32 @@ describe('API PetStore Swagger - Entidade Pet', () => {
                 expect(res.body.tags[0].name).toBe("vacinned")
             })
     })
+
+    it.each(massaInicial.array.map(elemento => [
+            elemento.nomePet,
+            elemento.idPet,
+            elemento.nomeCategoria,
+            elemento.idCategoria
+        ]))
+        ('POST Pet Data Driven Simples: %s', (nomePet, idPet, nomeCategoria, idCategoria) => {
+            const pet = require('../../vendors/json/pet.json')
+
+            pet.id = idPet
+            pet.name = nomePet
+            pet.category.id = idCategoria
+            pet.category.name = nomeCategoria
+
+            return request
+                .post('/pet')
+                .send(pet)
+                .then((res) => {
+                    expect(res.statusCode).toBe(200)
+                    expect(res.body.id).toBe(idPet)
+                    expect(res.body.name).toBe(nomePet)
+                    expect(res.body.category.name).toBe(nomeCategoria)
+                    expect(res.body.tags[0].name).toBe("vacinned")
+                })
+        })
 
     it('GET Pet', async() => {
         return request
@@ -49,5 +76,11 @@ describe('API PetStore Swagger - Entidade Pet', () => {
                 expect(res.body.type).toBe('unknown')
                 expect(res.body.message).toBe(`${petId}`)
             })
+    })
+
+    massaInicial.array.forEach(({ nomePet, idPet, nomeCategoria, idCategoria }) => {
+        it('POST Pet Data Driven ForEach- ${nomePet}', () => {
+
+        })
     })
 })
