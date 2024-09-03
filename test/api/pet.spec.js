@@ -5,10 +5,10 @@ const petId = 47335732444
 describe('API PetStore Swagger - Entidade Pet', () => {
 
     const request = supertest('https://petstore.swagger.io/v2')
-    const massaInicial = require('../../vendors/json/massaPet')
+    const massaInicial = require('../../vendors/json/pet/massaPet')
 
     it('POST Pet', () => {
-        const pet = require('../../vendors/json/pet.json')
+        const pet = require('../../vendors/json/pet/pet.json')
         return request
             .post('/pet')
             .send(pet)
@@ -28,7 +28,7 @@ describe('API PetStore Swagger - Entidade Pet', () => {
             elemento.idCategoria
         ]))
         ('POST Pet Data Driven Simples: %s', (nomePet, idPet, nomeCategoria, idCategoria) => {
-            const pet = require('../../vendors/json/pet.json')
+            const pet = require('../../vendors/json/pet/pet.json')
 
             pet.id = idPet
             pet.name = nomePet
@@ -58,7 +58,7 @@ describe('API PetStore Swagger - Entidade Pet', () => {
     })
 
     it('PUT Pet', () => {
-        const pet = require('../../vendors/json/petput.json')
+        const pet = require('../../vendors/json/pet/petput.json')
         return request
             .put('/pet')
             .send(pet)
@@ -79,7 +79,7 @@ describe('API PetStore Swagger - Entidade Pet', () => {
     })
     massaInicial.array.forEach(({ nomePet, idPet, nomeCategoria, idCategoria }) => {
         it(`POST Pet Data Driven ForEach- ${nomePet}`, () => {
-            const pet = require('../../vendors/json/pet.json')
+            const pet = require('../../vendors/json/pet/pet.json')
 
             pet.id = idPet
             pet.name = nomePet
@@ -108,7 +108,7 @@ describe('API PetStore Swagger - Entidade Pet', () => {
         })
 
         it(`PUT Pet Data Driven ForEach- ${nomePet}`, () => {
-            const pet = require('../../vendors/json/petput.json')
+            const pet = require('../../vendors/json/pet/petput.json')
 
             pet.id = idPet
             pet.name = nomePet
